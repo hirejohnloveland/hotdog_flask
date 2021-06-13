@@ -21,12 +21,12 @@ def get_categories():
 ########################################################
 
 
-@api.route('/menuitems', methods=['GET'])
-def get_items():
+@api.route('/menuitems/<int:cat_id>', methods=['POST'])
+def get_items(cat_id):
     """
-    [GET] /api/menuitems
+    [POST] /api/menuitems/<int:cat_id>
     """
-    items = Menu_Item.query.all()
+    items = Menu_Item.query.filter_by(category_id = cat_id).all()
     return jsonify([item.to_dict() for item in items])
 
 ########################################################
