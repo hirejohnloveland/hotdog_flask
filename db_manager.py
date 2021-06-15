@@ -68,7 +68,7 @@ class Db_Build():
         menu_list.append(
             Menu_Item(4, "Iced Tea", "A Southern Classic", 1.99, 'https://res.cloudinary.com/coding-temple/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1623616298/HotDogFT/tea_iawvzt.jpg', 2))
         menu_list.append(Menu_Item(
-            3, "Lemonade", "Freshly Squeezed to help you beat the heat while you eat our meat", 1.99, 'https://res.cloudinary.com/coding-temple/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1623616299/HotDogFT/lemonade_j94ahq.jpg', 23))
+            4, "Lemonade", "Freshly Squeezed to help you beat the heat while you eat our meat", 1.99, 'https://res.cloudinary.com/coding-temple/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1623616299/HotDogFT/lemonade_j94ahq.jpg', 23))
 
         for item in menu_list:
             db.session.add(item)
