@@ -48,6 +48,7 @@ class Menu_Item(db.Model):
             'name': self.name,
             'desc': self.desc,
             'price': self.price,
+            'image': self.img_url,
             'display_order': self.display_order
         }
 
@@ -76,8 +77,8 @@ class Ingredient(db.Model):
     name = db.Column(db.String(50), nullable=False)
     ingredients = db.relationship(
         'Meal_Ingredient', backref='ingredient', lazy='dynamic')
-    order__item__ingredient = db.relationship('Order_Item_Ingredient', backref='Ingredient', lazy='dynamic')
-    
+    order__item__ingredient = db.relationship(
+        'Order_Item_Ingredient', backref='Ingredient', lazy='dynamic')
 
     def __init__(self, name):
         self.name = name
@@ -87,9 +88,3 @@ class Ingredient(db.Model):
             'id': self.id,
             'name': self.name
         }
-
-
-
-
-
-
