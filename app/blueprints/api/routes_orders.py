@@ -6,6 +6,39 @@ from app.blueprints.orders.models import Order, Order_Item, Order_Item_Ingredien
 from app.blueprints.menu.models import Ingredient, Menu_Item
 
 #######################################################
+######## Get Cart Summary #############################
+#######################################################
+
+
+@api.route('/order/cart/summary', methods=['GET'])
+def view_cart_summary():
+    """
+    [GET] /api/order/cart/summary
+    """
+
+    # Authenticate user - or send back 401 to trigger new token
+    user = User_Anonymous.check_token(acquire_token(request))
+    if not user:
+        return abort(401)
+    
+    order = Order.get_order(user)
+    results = db.session.query(Menu_Item.price).join(Order_Item).filter_by(order_id=order.id)
+    
+    cart_price = 0
+    cart_count = 0
+    for result in results:
+        cart_price = cart_price + result.price
+        cart_count += 1
+
+    json_response = {
+        "price": cart_price,
+        "count": cart_count
+    }
+
+    return jsonify(json_response)
+    
+
+#######################################################
 ######## Get the Cart #################################
 #######################################################
 
