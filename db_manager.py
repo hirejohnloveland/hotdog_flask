@@ -92,7 +92,7 @@ class Db_Build():
 
     @staticmethod
     def db_init_order_status():
-        statii = ["Cooking, Complete, Pending"]
+        statii = ["Cooking", "Complete", "Pending"]
         for status in statii:
             add = Order_Status(status)
             db.session.add(add)
