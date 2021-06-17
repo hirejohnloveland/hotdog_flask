@@ -35,7 +35,8 @@ def view_cart_summary():
         "count": cart_count
     }
 
-    return jsonify(json_response)
+    return jsonify(json_response)    
+
     
 
 #######################################################
@@ -55,16 +56,15 @@ def view_cart():
         return abort(401)
 
     order = Order.get_order(user)
-    results = db.session.query(Menu_Item.category_id, Menu_Item.display_order,
-                               Menu_Item.name, Menu_Item.price, Order_Item.id).join(Order_Item).filter_by(order_id=order.id)
+    results = db.session.query(Menu_Item.id, Menu_Item.name, Menu_Item, Menu_Item.desc, Menu_Item.price, Menu_Item.img_url, Order_Item.id).join(Order_Item).filter_by(order_id=order.id)
 
     def query_to_dict(record):
         return {
-            'cart_item_category': record[0],
-            'cart_item_display': record[1],
-            'cart-item_name': record[2],
-            'cart_item_price': record[3],
-            'order_item_id': record[4]
+            'id': record[0],
+            'name': record[1],
+            'desc': record[2],
+            'price': record[3],
+            'image': record[4],
         }
 
     return jsonify([query_to_dict(result) for result in results])
