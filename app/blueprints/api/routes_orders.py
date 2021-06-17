@@ -65,6 +65,7 @@ def view_cart():
             'desc': record[2],
             'price': record[3],
             'image': record[4],
+            'oid': record[5],
         }
 
     return jsonify([query_to_dict(result) for result in results])
