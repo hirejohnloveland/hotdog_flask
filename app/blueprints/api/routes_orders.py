@@ -56,7 +56,7 @@ def view_cart():
         return abort(401)
 
     order = Order.get_order(user)
-    results = db.session.query(Menu_Item.id, Menu_Item.name, Menu_Item, Menu_Item.desc, Menu_Item.price, Menu_Item.img_url, Order_Item.id).join(Order_Item).filter_by(order_id=order.id)
+    results = db.session.query(Menu_Item.id, Menu_Item.name, Menu_Item.desc, Menu_Item.price, Menu_Item.img_url, Order_Item.id).join(Order_Item).filter_by(order_id=order.id)
 
     def query_to_dict(record):
         return {
