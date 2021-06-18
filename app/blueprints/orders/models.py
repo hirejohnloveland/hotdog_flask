@@ -4,6 +4,7 @@ from app.blueprints.menu.models import *
 
 
 class Payment_Type(db.Model):
+    # Manages different payment types
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     order = db.relationship('Order', backref='payment', lazy='dynamic')
@@ -13,6 +14,7 @@ class Payment_Type(db.Model):
 
 
 class Order_Status(db.Model):
+    # Manages different order stati
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     order = db.relationship('Order', backref='status', lazy='dynamic')
@@ -22,6 +24,7 @@ class Order_Status(db.Model):
 
 
 class Order(db.Model):
+    # Manages individual carts (orders)
     id = db.Column(db.Integer, primary_key=True)
     datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     originator = db.Column(db.String(50), nullable=False)
@@ -77,6 +80,7 @@ class Order(db.Model):
 
 
 class Order_Item(db.Model):
+    # Manages the many to many relationship between menu items and orders
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey(
         Menu_Item.id), nullable=False)
@@ -102,6 +106,7 @@ class Order_Item(db.Model):
 
 
 class Order_Item_Ingredient(db.Model):
+    # Manages the unique ingredients of each item on an order
     id = db.Column(db.Integer, primary_key=True)
     ingredient_id = db.Column(
         db.Integer, db.ForeignKey(Ingredient.id), nullable=False)

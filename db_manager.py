@@ -8,7 +8,7 @@ from app import db
 
 
 class Db_Build():
-
+    # This script populates the database, run from Flask shell
     @staticmethod
     def db_init_all():
         Db_Build.db_init_cat()
@@ -100,7 +100,7 @@ class Db_Build():
 
 
 class Db_Destroy():
-
+    # This script destroys the database, run from Flask shell
     @staticmethod
     def db_destroy():
         db.reflect()

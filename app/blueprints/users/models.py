@@ -5,6 +5,7 @@ import os
 
 
 class User_Anonymous(db.Model):
+    # Anonymous user class to identify individual unauthenticated users
     id = db.Column(db.Integer, primary_key=True)
     token = db.Column(db.String(32), index=True, unique=True)
     origination = db.Column(db.DateTime, default = datetime.utcnow())

@@ -2,6 +2,7 @@ from app import db
 
 
 class Category(db.Model):
+    # Manages the different types of products
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     display_order = db.Column(db.Integer, nullable=False)
@@ -20,6 +21,7 @@ class Category(db.Model):
 
 
 class Menu_Item(db.Model):
+    # Manages the menu
     id = db.Column(db.Integer, primary_key=True)
     category_id = db.Column(db.Integer, db.ForeignKey(
         'category.id'), nullable=False)  # FKey
@@ -54,6 +56,7 @@ class Menu_Item(db.Model):
 
 
 class Meal_Ingredient(db.Model):
+    # Many to many table associating individual menu items with individual ingredients
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey(
         Menu_Item.id), nullable=False)  # Fkey
@@ -73,6 +76,7 @@ class Meal_Ingredient(db.Model):
 
 
 class Ingredient(db.Model):
+    # Manage the ingredients
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     ingredients = db.relationship(
